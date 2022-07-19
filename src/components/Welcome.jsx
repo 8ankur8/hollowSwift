@@ -3,6 +3,8 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import { SiEthereum } from "react-icons/si";
 import { BsInfoCircle } from "react-icons/bs";
 
+import { TransactionContext} from "../context/TransactionContext";
+
 import { Loader } from ".";
 
 const commonStyles = "min-h-[60px] sm:px-0 px-2 sm:min-w-[120px] flex justify-center items-center border-[0.5px] border-gray-400 text-sm font-light text-white";
@@ -19,23 +21,31 @@ const Input = ({ placeholder, name, type, value, handleChange }) => (
   )
 
 const Welcome = () =>{
+ const { connectWallet,currentAccount,formData,sendTransaction,handleChange } = useContext(TransactionContext)
 
-    const connectWallet = () =>{
+ const handleSubmit = (e) =>{
+     const {addressTo,amount,keyword,message} = formData
 
-    }
+     e.preventDefault()
+
+     if(!addressTo || !amount || !keyword || !message) return
+
+     sendTransaction()
+ }
+
 
     return(
         
          <div className="flex w-full justify-center items-center">
-            <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
+            <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-10">
                 <div className="flex flex-1 justify-start items-start flex-col mf:mr-10">
-                    <h1 className="text-3xl sm:text-5xl text-white text-gradient py-1">
-                        Mine Crypto <br /> Across Hollow World
+                    <h1 className="text-3xl sm:text-5xl text-white py-1">
+                        Exchange Crypto <br /> Across The World
                     </h1>
                     <p className="text-left mt-5 text-white font-light md:w-9/12 w-11/12 text-base">
-                    Explore the crypto world. Buy and sell easily on Hollow.
+                    Explore the crypto world with Hollow.
                     </p>
-                    <button
+                    {!currentAccount && (<button
                         type="button"
                         onClick={connectWallet}
                         className="flex flex-row justify-center items-center my-5 bg-[#f97068] p-3 rounded-full cursor-pointer hover:bg-[#f97968]"
@@ -44,17 +54,13 @@ const Welcome = () =>{
                     <p className="text-white text-base font-semibold">
                         Connect Wallet
                     </p>
-                    </button>
+                    </button>)}
 
-                    <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
-                        <div className={`rounded-full ${commonStyles}`}>
-                            Easy transition
-                        </div>
-                        <div className={commonStyles}>Security</div>
-                        <div className={commonStyles}>Ethereum</div>
+                    <div className="grid sm:grid-cols-2 grid-cols-2 w-full mt-10">
+                        <div className={commonStyles}>Secure</div>
                         <div className={commonStyles}>Web 3.0</div>
-                        <div className={commonStyles}>Low Fees</div>
-                        <div className={`rounded-full ${commonStyles}`}> Blockchain
+                        <div className={commonStyles}>Lower Gas Fees</div>
+                        <div className={commonStyles}> omnichain
                         </div>
                     </div>
                 </div>
@@ -69,7 +75,7 @@ const Welcome = () =>{
                                     <BsInfoCircle fontSize={17} color="#fff" /></div>
                                     <div>
                                         <p className="text-white font-light text-sm">
-                                            address
+                                            {currentAccount ? currentAccount.slice(0,8) : 'Account'}
                                         </p>
                                         <p className="text-white font-semibold text-lg mt-1">
                                             Ethereum
@@ -77,11 +83,18 @@ const Welcome = () =>{
                                     </div>
                                 </div>
                             </div>
-                            <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
-                            <Input placeholder="Address To" name="addressTo" type="text" handleChange={()=>{}} />
-                            <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={()=>{}} />
-                            <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={()=>{}} />
-                            <Input placeholder="Enter Message" name="message" type="text" handleChange={()=>{}} />
+                            <div className="p-5 sm:w-96 w-full flex flex-col justify-start items-center white-glassmorphism">
+                            <Input placeholder="Address To" name="addressTo" type="text" handleChange={handleChange} />
+                            <Input placeholder="Amount (ETH)" name="amount" type="number" handleChange={handleChange} />
+                            <Input placeholder="Keyword (Gif)" name="keyword" type="text" handleChange={handleChange} />
+                            <Input placeholder="Enter Message" name="message" type="text" handleChange={handleChange} />
+                            <button
+                            type="button"
+                            onClick={handleSubmit}
+                            className="text-white w-full mt-2 border-[1px] p-2 border-[#3d4f7c] hover:bg-[#3d4f7c] rounded-full cursor-pointer"
+                            >
+                            Send now
+                            </button>
                             </div>                
             </div>
         </div>

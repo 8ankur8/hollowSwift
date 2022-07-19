@@ -19,7 +19,7 @@ const Nav = () =>{
         <img src={logo} alt="logo" className="w-20 cursor-pointer "/>
       </div>
       <ul className="text-white md:flex hidden list-none flex-row justify-between items-center flex-intial">
-         {["Market","Exchange","Tutorials","Wallets"].map((item,index) => (
+         {["Features","Exchange","Wallets"].map((item,index) => (
             <NavItem key ={item + index} title ={item} />
          ))}
          <li className="bg-[#f97068] py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-black">

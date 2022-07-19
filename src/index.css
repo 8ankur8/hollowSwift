@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+/*@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");*/
 
 * html {
   padding: 0;
@@ -14,32 +14,41 @@ body {
 }
 
 .radient {
-  background-color:#0f0e13;
+  background-color:#00181B;
   background-image: 
-    radial-gradient(at 0% 0%, rgb(0, 0, 0) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, rgb(80, 139, 126) 0, transparent 50%), 
-    radial-gradient(at 100% 0%, rgb(117, 45, 70) 0, transparent 50%);
+    radial-gradient(at 0% 100%, rgb(0, 0, 0) 0, transparent 300%), 
+    radial-gradient(at 70% 30%, rgb(80, 139, 126) 0, transparent 80%);
+  animation: color-rotate 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; 
 }
 
 .gradient-bg-services {
-  background-color:#0f0e13;
+  background-color:#00181B;
   background-image: 
-    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 100%, hsla(225,39%,25%,1) 0, transparent 50%);
+    radial-gradient(at 100% 0%, rgb(0, 1, 1) 0, transparent 250%), 
+    radial-gradient(at 10% 50%, hsla(225,39%,25%,1) 0, transparent 60%);
+  animation: color-rotate 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; 
 }
 
 .gradient-bg-transactions {
-  background-color: #0f0e13;
+  background-color:transparent;
   background-image: 
-    radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,25%,1) 0, transparent 50%);
+    radial-gradient(at 0% 50%, hsla(253,16%,7%,1) 0, transparent 500%), 
+    radial-gradient(at 10% 0%, hsla(225,39%,25%,1) 0, transparent 50%);
 }
 
 .gradient-bg-footer {
-  background-color: #0f0e13;
+  background-color: #00181B;
   background-image: 
-    radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 53%), 
-    radial-gradient(at 50% 150%, hsla(339,49%,30%,1) 0, transparent 50%);
+    radial-gradient(at 50% 0%, rgb(0, 0, 0) 0, transparent 200%), 
+    radial-gradient(at 50% 100%, hsla(339,49%,30%,1) 0, transparent 100%);
+
+  animation: color-rotate 2s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
 .blue-glassmorphism {
@@ -78,6 +87,16 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@keyframes color-rotate {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+
 
 @tailwind base;
 @tailwind components;
